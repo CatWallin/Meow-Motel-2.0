@@ -1,0 +1,13 @@
+<!-- index.hbs -->
+<h1>Cats</h1>
+<link href="./public/css/style.css" rel="stylesheet" type="text/css" />
+
+<table>
+{{#each cats}}
+  <tr>
+    <td>{{first_name}}</td>
+    <td>{{last_name}}</td>
+    <td>{{notes}}</td>
+  </tr>
+{{/each}}
+</table>

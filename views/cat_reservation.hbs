@@ -1,0 +1,11 @@
+<!-- index.hbs -->
+<h1>Cat Reservation</h1>
+<link href="../public/css/style.css" rel="stylesheet" type="text/css" />
+<table>
+{{#each cat_reservation}}
+  <tr>
+    <td>{{cat_id}}</td>
+    <td>{{reservation_id}}</td>
+  </tr>
+{{/each}}
+</table>

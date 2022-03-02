@@ -1,0 +1,12 @@
+<!-- index.hbs -->
+<h1>Customers</h1>
+
+<table>
+{{#each customer}}
+  <tr>
+    <td>{{first_name}}</td>
+    <td>{{last_name}}</td>
+    <td>{{reservation_id}}</td>
+  </tr>
+{{/each}}
+</table>
