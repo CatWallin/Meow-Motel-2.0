@@ -2,27 +2,27 @@ module.exports = function(){
     var express = require('express');
     var router = express.Router();
 
-    function serveCatCustomers(req, res){
-        var query = 'SELECT cat_id, customer_id FROM cat_customer';
+    function serveCustomers(req, res){
+        var query = 'SELECT first_name, last_name, reservation_id FROM customer';
         var mysql = req.app.get('mysql');
         var context = {};
 
-        function handleRenderingOfCatCustomers(error, results, fields){
+        function handleRenderingOfCustomers(error, results, fields){
           console.log(error)
           console.log(results)
           console.log(fields)
           //take the results of that query and store ti inside context
-          context.cat_customer = results;
+          context.customers = results;
           //pass it to handlebars to put inside a file
-          res.render('cat_customer', context)
+          res.render('customers', context)
         }
         //execute the sql query
-        mysql.pool.query(query, handleRenderingOfCatCustomers)
+        mysql.pool.query(query, handleRenderingOfCustomers)
 
         //res.send('Here you go!');
     }
 
 
-    router.get('/', serveCatCustomers);
+    router.get('/', serveCustomers);
     return router;
 }();

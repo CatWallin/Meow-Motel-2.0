@@ -31,9 +31,9 @@ app.set('port', process.argv[2]);
 app.use('/cats', require('./cats.js'));
 app.use('/rooms', require('./rooms.js'));
 app.use('/cat_customer', require('./cat_customer.js'));
-//app.use('/cat_reservation', require('./cat_reservation.js'));
-//app.use('/customers', require('./customers.js'));
-//app.use('/employees', require('./employees.js'));
+app.use('/cat_reservation', require('./cat_reservation.js'));
+app.use('/customers', require('./customers.js'));
+app.use('/employees', require('./employees.js'));
 app.use('/reservations', require('./reservations.js'));
 app.use('/', express.static('public'));
 
