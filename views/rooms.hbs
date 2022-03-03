@@ -1,0 +1,15 @@
+<!-- index.hbs -->
+<h1>Rooms</h1>
+
+<table>
+{{#each room}}
+  <tr>
+    <td>{{room_id}}</td>
+    <td>{{clean}}</td>
+    <td>{{occupied}}</td>
+    <td>{{cat_id}}</td>
+    <td>{{employee_id}}</td>
+    <td>{{reservation_id}}</td>
+  </tr>
+{{/each}}
+</table>

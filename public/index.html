@@ -1,0 +1,30 @@
+<html>
+<head>
+  <title> CS340: The Pawsome Hotel Management Database Strategy </title>
+  <link href="./css/style.css" rel="stylesheet" type="text/css" />
+  <div id="nav-placeholder"></div>
+</head>
+<body>
+
+  <script src="//code.jquery.com/jquery.min.js"></script>
+  <script>
+    $.get("navbar.html", function(data){
+    $("#nav-placeholder").replaceWith(data);
+  });
+  </script>
+
+  <h3> CS340: The Pawsome Hotel Management Database Strategy </h3>
+
+  <ul>
+    <p><a href='reservations'>Reservations</a></p>
+    <p><a href='cats'>Cats</a></p>
+    <p><a href='rooms'>Rooms</a></p>
+    <p><a href='employees'>Employees</a></p>
+    <p><a href='customers'>Customers</a></p>
+    <p><a href='cat_customer'>Cat Customer</a></p>
+    <p><a href='cat_reservation'>Cat Reservation</a></p>
+  </ul>
+  <br/>
+  <i>The Coding Cats</i>  
+</body>
+</html>
