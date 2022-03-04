@@ -1,7 +1,14 @@
 <!-- index.hbs -->
 <h1>Cat Customer</h1>
+<link rel="stylesheet" href="/css/style.css">
 
 <table>
+  <thead>
+    <tr>
+      <th>Cat ID</th>
+      <th>Customer ID</th>
+    </tr>
+  </thead>
 {{#each cat_customer}}
   <tr>
     <td>{{cat_id}}</td>

@@ -3,7 +3,7 @@ module.exports = function(){
     var router = express.Router();
 
     function serveCats(req, res){
-        var query = 'SELECT first_name, last_name, notes FROM cat';
+        var query = 'SELECT first_name, last_name, notes, room_id, customer_id, reservation_id FROM cat';
         var mysql = req.app.get('mysql');
         var context = {};
 

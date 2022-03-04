@@ -1,12 +1,34 @@
 <!-- index.hbs -->
 <h1>Reservation</h1>
+<link rel="stylesheet" href="/css/style.css">
 
 <table>
-{{#each resevations}}
+  <thead>
+    <tr>
+      <th>Check In</th>
+      <th>Check Out</th>
+      <th>Customer ID</th>
+    </tr>
+  </thead>
+{{#each reservations}}
   <tr>
     <td>{{check_in}}</td>
     <td>{{check_out}}</td>
-    <td>{{cutsomer_id}}</td>
+    <td>{{customer_id}}</td>
   </tr>
 {{/each}}
 </table>
+
+<br>
+        <br>
+        <caption>Add a new reservation:</caption><br><br>
+        <form id="add-reservation-form" method="POST" action="/add-reservation-form">
+          <label for="checkin">Check-In Date</label><br>
+          <input type="date" id="input-first_name" name="input-first_name" value="Start Date" min="2022-01-01" max="2023-12-31"><br>
+          <label for="checkout">Check-Out Date</label><br>
+          <input type="date" id="input-last_name" name="input-last_name" value="End Date" min="2022-01-02" max="2023-12-31"><br>
+          <label for="customer">Customer ID</label><br>
+          <input type="int" id="input-customer_id" name="input-customer_id" value=""><br>
+          <input type="submit" value="Submit">
+        </form>
+

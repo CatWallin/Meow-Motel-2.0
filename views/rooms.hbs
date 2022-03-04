@@ -1,7 +1,18 @@
 <!-- index.hbs -->
 <h1>Rooms</h1>
+<link rel="stylesheet" href="/css/style.css">
 
 <table>
+  <thead>
+    <tr>
+      <th>Room ID</th>
+      <th>Clean</th>
+      <th>Occupied</th>
+      <th>Cat ID</th>
+      <th>Employee ID</th>
+      <th>Reservation ID</th>
+    </tr>
+  </thead>
 {{#each room}}
   <tr>
     <td>{{room_id}}</td>
@@ -13,3 +24,4 @@
   </tr>
 {{/each}}
 </table>
+

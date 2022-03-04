@@ -1,7 +1,15 @@
 <!-- index.hbs -->
 <h1>Customers</h1>
+<link rel="stylesheet" href="/css/style.css">
 
 <table>
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Reservation ID</th>
+    </tr>
+  </thead>
 {{#each customers}}
   <tr>
     <td>{{first_name}}</td>
@@ -10,3 +18,11 @@
   </tr>
 {{/each}}
 </table>
+
+<form id="add-customer-form" method="POST" action="/add-customer-form">
+<label for="input-first_name">First Name: </label>
+<input type="text" name="input-first_name" id="input-first_name">
+<label for="input-last_name">Last Name: </label>
+<input type="text" name="input-last_name" id="input-last_name">
+<input type="submit">
+</form>
