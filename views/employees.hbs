@@ -2,12 +2,23 @@
 <h1>Employees</h1>
 <link rel="stylesheet" href="/css/style.css">
 
+<div id="nav-placeholder"></div>
+	  
+
+      <script src="//code.jquery.com/jquery.min.js"></script>
+      <script>
+        $.get("../navbar.html", function(data){
+        $("#nav-placeholder").replaceWith(data);
+      });
+      </script>
+
 <table>
   <thead>
     <tr>
       <th>First Name</th>
       <th>Last Name</th>
       <th>Room ID</th>
+      <th></th>
     </tr>
   </thead>
 {{#each employees}}
@@ -15,9 +26,12 @@
     <td>{{first_name}}</td>
     <td>{{last_name}}</td>
     <td>{{room_id}}</td>
+    <td><button onclick="deleteEmployee({{this.id}})">Delete</button></td>
   </tr>
 {{/each}}
 </table>
+<script src="./js/delete_employee.js"></script>
+
 
 <p></p>
 <p>To add a new employee, please enter their information below and click `Submit`!</p>
