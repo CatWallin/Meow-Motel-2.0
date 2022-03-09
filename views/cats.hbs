@@ -1,12 +1,46 @@
 <!-- index.hbs -->
 <h1>Cats</h1>
+<link rel="stylesheet" href="/css/style.css">
 
-<table>
+<table id="cat-table">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Notes</th>
+      <th>Room ID</th>
+      <th>Customer ID</th>
+      <th>Reservation ID</th>
+    </tr>
+  </thead>
 {{#each cats}}
   <tr>
     <td>{{first_name}}</td>
     <td>{{last_name}}</td>
     <td>{{notes}}</td>
+    <td>{{room_id}}</td>
+    <td>{{customer_id}}</td>
+    <td>{{reservation_id}}</td>
   </tr>
 {{/each}}
 </table>
+
+<br>
+        <br>
+        <caption>Add a new cat:</caption><br><br>
+        <form id="add-cat-form" method="POST" action="/add-cat-form">
+          <label for="fname">First name</label>
+          <input type="text" id="input-first-name" name="input-first-name" value="">
+          <label for="lname">Last name</label>
+          <input type="text" id="input-last-name" name="input-last-name" value="">
+          <label for="notes">Notes</label>
+          <input type="text" id="input-notes" name="input-notes" value="">
+          <select name="input-customer" id="input-customer-html">
+            <option value="">Select an Owner</option>
+            {{#each customers}}
+              <option value="{{id}}">{{first_name}}</option>
+            {{/each}}
+          </select>
+          <input type="submit" value="Submit">
+        </form>
+

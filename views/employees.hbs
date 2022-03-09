@@ -1,7 +1,15 @@
 <!-- index.hbs -->
 <h1>Employees</h1>
+<link rel="stylesheet" href="/css/style.css">
 
 <table>
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Room ID</th>
+    </tr>
+  </thead>
 {{#each employees}}
   <tr>
     <td>{{first_name}}</td>
@@ -11,20 +19,18 @@
 {{/each}}
 </table>
 
-<h2>Adding Data using an HTML form</h2>
-<p>To add a new person, please enter their information below nad click `Submit`!</p>
-<form id="add-person-form" method="POST" action="/add-person-form">
-    <label for="input-fname">First Name: </label>
-    <input type="text" name="input-fname" id="input-fname">
-    
-    <label for="input-lname">Last Name: </label>
-    <input type="text" name="input-lname" id="input-lname">
-
-    <label for="input-homeworld">Homeworld: </label>
-    <input type="number" name="input-homeworld" id="input-homeworld">
-
-    <label for="input-age">Age: </label>
-    <input type="number" name="input-age" id="input-age">
-
-    <input type="submit">
+<p></p>
+<p>To add a new employee, please enter their information below and click `Submit`!</p>
+<form id="add-employee-form" method="POST" action="/add-employee-form">
+<label for="input-first_name">First Name: </label>
+<input type="text" name="input-first_name" id="input-first_name">
+<label for="input-last_name">Last Name: </label>
+<input type="text" name="input-last_name" id="input-last_name">
+          <select name="room" id="room">
+            <option value="">Select a Room</option>
+            {{#each rooms}}
+            <option value="{{id}}">{{id}}</option>
+            {{/each}}
+          </select>
+<input type="submit">
 </form>

@@ -2,10 +2,23 @@ module.exports = function(){
     var express = require('express');
     var router = express.Router();
 
+    
     function serveCats(req, res){
         var query = 'SELECT first_name, last_name, notes, room_id, customer_id, reservation_id FROM cat';
+        var query2 = 'SELECT * FROM customer';
         var mysql = req.app.get('mysql');
         var context = {};
+
+        
+        function handleRenderingOfCustomers(error, results, fields){
+          console.log(error)
+          console.log(results)
+          console.log(fields)
+          //take the results of that query and store ti inside context
+          context.customers = results;
+          //pass it to handlebars to put inside a file
+          res.render('cats', context)
+        }
 
         function handleRenderingOfCats(error, results, fields){
           console.log(error)
@@ -16,13 +29,17 @@ module.exports = function(){
           //pass it to handlebars to put inside a file
           res.render('cats', context)
         }
+
         //execute the sql query
         mysql.pool.query(query, handleRenderingOfCats)
+        mysql.pool.query(query2, handleRenderingOfCustomers)
+        
 
         //res.send('Here you go!');
     }
 
-
     router.get('/', serveCats);
+
     return router;
 }();
+
