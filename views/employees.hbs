@@ -12,7 +12,7 @@
       });
       </script>
 
-<table>
+<table id="employee-table">
   <thead>
     <tr>
       <th>First Name</th>
@@ -26,11 +26,11 @@
     <td>{{first_name}}</td>
     <td>{{last_name}}</td>
     <td>{{room_id}}</td>
-    <td><button onclick="deleteEmployee({{this.id}})">Delete</button></td>
+    <td><button onclick="deleteEmployee({{id}})">Delete</button></td>
   </tr>
 {{/each}}
 </table>
-<script src="./js/delete_employee.js"></script>
+<script src="./public/js/delete_employee.js"></script>
 
 
 <p></p>

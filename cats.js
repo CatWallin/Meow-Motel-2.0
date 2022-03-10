@@ -2,44 +2,42 @@ module.exports = function(){
     var express = require('express');
     var router = express.Router();
 
-    
-    function serveCats(req, res){
-        var query = 'SELECT first_name, last_name, notes, room_id, customer_id, reservation_id FROM cat';
-        var query2 = 'SELECT * FROM customer';
-        var mysql = req.app.get('mysql');
-        var context = {};
+    function getCats(res, mysql, context, complete){
+      mysql.pool.query("SELECT first_name, last_name, notes, room_id, customer_id, reservation_id FROM cat", function(error, results, fields){
+          if(error){
+              res.write(JSON.stringify(error));
+              res.end();
+          }
+          context.cats  = results;
+          complete();
+      });
+  }
 
-        
-        function handleRenderingOfCustomers(error, results, fields){
-          console.log(error)
-          console.log(results)
-          console.log(fields)
-          //take the results of that query and store ti inside context
+  function getCustomers(res, mysql, context, complete){
+      mysql.pool.query("SELECT first_name, last_name, reservation_id FROM customer", function(error, results, fields){
+          if(error){
+              res.write(JSON.stringify(error));
+              res.end();
+          }
           context.customers = results;
-          //pass it to handlebars to put inside a file
-          res.render('cats', context)
-        }
+          complete();
+      });
+  }
 
-        function handleRenderingOfCats(error, results, fields){
-          console.log(error)
-          console.log(results)
-          console.log(fields)
-          //take the results of that query and store ti inside context
-          context.cats = results;
-          //pass it to handlebars to put inside a file
-          res.render('cats', context)
-        }
-
-        //execute the sql query
-        mysql.pool.query(query, handleRenderingOfCats)
-        mysql.pool.query(query2, handleRenderingOfCustomers)
-        
-
-        //res.send('Here you go!');
-    }
-
-    router.get('/', serveCats);
+    router.get('/', function(req, res){
+      var callbackCount = 0;
+      var context = {};
+      //context.jsscripts = ["deleteperson.js","filterpeople.js","searchpeople.js"];
+      var mysql = req.app.get('mysql');
+      getCats(res, mysql, context, complete);
+      getCustomers(res, mysql, context, complete);
+      function complete(){
+          callbackCount++;
+          if(callbackCount >= 2){
+              res.render('cats', context);
+          }
+      }
+    });
 
     return router;
 }();
-

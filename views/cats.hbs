@@ -35,6 +35,7 @@
 {{/each}}
 </table>
 
+
 <br>
         <br>
         <caption>Add a new cat:</caption><br><br>
@@ -45,7 +46,7 @@
           <input type="text" id="input-last-name" name="input-last-name" value="">
           <label for="notes">Notes</label>
           <input type="text" id="input-notes" name="input-notes" value="">
-          <select name="input-customer" id="input-customer-html">
+          <select name="input-customer" id="input-customer">
             <option value="">Select an Owner</option>
             {{#each customers}}
               <option value="{{id}}">{{first_name}}</option>
