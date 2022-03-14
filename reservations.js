@@ -22,7 +22,7 @@ module.exports = function(){
         //res.send('Here you go!');
     }
 
-
     router.get('/', serveReservations);
     return router;
 }();
+

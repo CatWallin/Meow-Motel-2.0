@@ -22,7 +22,38 @@ module.exports = function(){
         //res.send('Here you go!');
     }
 
-
     router.get('/', serveCatReservation);
+
+    router.delete('/delete-person-ajax/', function(req,res,next){
+      let data = req.body;
+      let catReservationID = parseInt(data.id);
+      let deleteCatReservation = "DELETE FROM cat_reservation WHERE pid = ?";
+      let deleteReservation = "DELETE FROM reservation WHERE id = ?";
+    
+        // Run the 1st query
+        db.pool.query(deleteCatReservation, [catReservationID], function(error, rows, fields){
+            if (error) {
+    
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+            }
+    
+            else
+            {
+              // Run the second query
+              db.pool.query(deleteReservation, [catReservationID], function(error, rows, fields) {
+    
+                if (error) {
+                    console.log(error);
+                    res.sendStatus(400);
+                } else {
+                    res.sendStatus(204);
+                }
+              })
+            }
+    })});
+
+
     return router;
 }();

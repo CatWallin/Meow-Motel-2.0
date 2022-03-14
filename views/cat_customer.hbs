@@ -1,7 +1,24 @@
 <!-- index.hbs -->
 <h1>Cat Customer</h1>
+<link rel="stylesheet" href="/css/style.css">
+
+<div id="nav-placeholder"></div>
+	  
+
+      <script src="//code.jquery.com/jquery.min.js"></script>
+      <script>
+        $.get("../navbar.html", function(data){
+        $("#nav-placeholder").replaceWith(data);
+      });
+      </script>
 
 <table>
+  <thead>
+    <tr>
+      <th>Cat ID</th>
+      <th>Customer ID</th>
+    </tr>
+  </thead>
 {{#each cat_customer}}
   <tr>
     <td>{{cat_id}}</td>

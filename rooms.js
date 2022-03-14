@@ -22,7 +22,6 @@ module.exports = function(){
         //res.send('Here you go!');
     }
 
-
     router.get('/', serveRooms);
     return router;
 }();

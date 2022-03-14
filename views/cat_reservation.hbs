@@ -1,11 +1,32 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 <!-- index.hbs -->
 <h1>Cat Reservation</h1>
-<link href="../public/css/style.css" rel="stylesheet" type="text/css" />
-<table>
+<link rel="stylesheet" href="/css/style.css">
+<div id="nav-placeholder"></div>
+	  
+
+      <script src="//code.jquery.com/jquery.min.js"></script>
+      <script>
+        $.get("../navbar.html", function(data){
+        $("#nav-placeholder").replaceWith(data);
+      });
+      </script>
+
+<table id="cat-reservation-table">
+  <thead>
+    <tr>
+      <th>Cat ID</th>
+      <th>Reservation ID</th>
+      <th></th>
+    </tr>
+  </thead>
 {{#each cat_reservation}}
   <tr>
     <td>{{cat_id}}</td>
     <td>{{reservation_id}}</td>
+    <td><button onclick="deleteCatReservation({{id}})">Delete</button></td>
   </tr>
 {{/each}}
 </table>
+<script src="/js/delete_cat_reservation.js"></script>
