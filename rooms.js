@@ -3,7 +3,7 @@ module.exports = function(){
     var router = express.Router();
 
     function serveRooms(req, res){
-        var query = 'SELECT room_id, clean, occupied, cat_id, employee_id, reservation_id FROM room';
+        var query = 'SELECT room_id, clean, occupied, employee_id FROM room';
         var mysql = req.app.get('mysql');
         var context = {};
 
@@ -12,7 +12,7 @@ module.exports = function(){
           console.log(results)
           console.log(fields)
           //take the results of that query and store ti inside context
-          context.room = results;
+          context.rooms = results;
           //pass it to handlebars to put inside a file
           res.render('rooms', context)
         }
