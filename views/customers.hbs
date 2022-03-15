@@ -12,6 +12,13 @@
       });
       </script>
 
+<form id='search_people' action='' method=''>
+<!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <label> Search customers for first name starting with:</label>
+    <input id='first_name_search_string' type='text' name='first_name_search_string' value=''>
+    <input type="button" value="Search" onclick="searchCustomerByFirstName()">
+</form>
+<br><br>
 <table>
   <thead>
     <tr>
@@ -26,7 +33,7 @@
   </tr>
 {{/each}}
 </table>
-
+<br><br>
 <form id="add-customer-form" method="POST" action="/add-customer-form">
 <label for="input-first_name">First Name: </label>
 <input type="text" name="input-first_name" id="input-first_name">
