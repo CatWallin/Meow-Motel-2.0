@@ -31,3 +31,20 @@
 {{/each}}
 </table>
 
+<br>
+        <br>
+        <caption>Add a new room:</caption><br><br>
+        <form id="add-room-form" method="POST" action="/add-room-form">
+          <input type="checkbox" name="input-clean" id="input-clean" value="clean">
+          <label for="clean"> The room is clean </label>
+          <input type="checkbox" name="input-occupied" id="input-occupied" value="occupied">
+          <label for="occupied"> The room is occupied </label>
+          <select name="input-employee" id="input-employee-ajax">
+            <option value="">Select an Employee</option>
+            {{#each employees}}
+            <option value="{{this.employee_id}}">{{this.first_name}}</option>
+            {{/each}}
+          </select>
+          <input type="submit">
+        </form>
+

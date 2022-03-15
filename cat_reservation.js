@@ -2,29 +2,33 @@ module.exports = function(){
     var express = require('express');
     var router = express.Router();
 
-    function serveCatReservation(req, res){
-        var query = 'SELECT cat_id, reservation_id FROM cat_reservation';
-        var mysql = req.app.get('mysql');
-        var context = {};
+    router.get('/', function(req, res)
+  {  
+      var db = req.app.get('mysql');
+      let query1 = "SELECT * FROM cat_reservation;";
 
-        function handleRenderingOfCatReservation(error, results, fields){
-          console.log(error)
-          console.log(results)
-          console.log(fields)
-          //take the results of that query and store ti inside context
-          context.cat_reservation = results;
-          //pass it to handlebars to put inside a file
-          res.render('cat_reservation', context)
-        }
-        //execute the sql query
-        mysql.pool.query(query, handleRenderingOfCatReservation)
+      let query2 = "SELECT * FROM cat;";
 
-        //res.send('Here you go!');
-    }
+      let query3 = "SELECT * FROM reservation;"
 
-    router.get('/', serveCatReservation);
+      db.pool.query(query1, function(error, rows, fields){
+      
+          let cat_reservation = rows;
+          
+          db.pool.query(query2, (error, rows, fields) => {
+              
+              let cats = rows;
 
-    router.delete('/delete-person-ajax/', function(req,res,next){
+              db.pool.query(query3, (error, rows, fields) => {
+              
+                  let reservations = rows;
+                  return res.render('cat_reservation', {cat_reservation: cat_reservation, cats: cats, reservations: reservations});
+              })  
+          })  
+      })
+  });    
+
+    router.delete('/delete-cat-reservation-ajax/', function(req,res,next){
       let data = req.body;
       let catReservationID = parseInt(data.id);
       let deleteCatReservation= `DELETE FROM cat_reservation WHERE pid = ?`;
@@ -54,6 +58,9 @@ module.exports = function(){
                 })
               }
     })});
+
+    
+
 
 
     return router;
