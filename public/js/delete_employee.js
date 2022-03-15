@@ -1,7 +1,7 @@
 function deleteEmployee(employeeID) {
     // Put our data we want to send in a javascript object
     let data = {
-        id: personID
+        id: employeeID
     };
 
     // Setup our AJAX request
@@ -28,11 +28,11 @@ function deleteEmployee(employeeID) {
 
 function deleteRow(employeeID){
 
-    let table = document.getElementById("people-table");
+    let table = document.getElementById("employee-table");
     for (let i = 0, row; row = table.rows[i]; i++) {
        //iterate through rows
        //rows would be accessed using the "row" variable assigned in the for loop
-       if (table.rows[i].getAttribute("data-value") == employeeID) {
+       if (table.rows[i].getAttribute("employee_id") == employeeID) {
             table.deleteRow(i);
             break;
        }

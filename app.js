@@ -82,7 +82,7 @@ app.post('/add-reservation-form', function(req, res){
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
      // Create the query and run it on the database
-    query1 = `INSERT INTO reservation (check_in, check_out, customer_id) VALUES ('${data['input-first_name']}', '${data['input-last_name']}', '${data['input-customer_id']}')`;
+    query1 = `INSERT INTO reservation (check_in, check_out, customer_id, room_id) VALUES ('${data['input-first_name']}', '${data['input-last_name']}', '${data['input-customer']}', '${data['input-room']}',)`;
     db.pool.query(query1, function(error, rows, fields){
         // Check to see if there was an error
         if (error) {
@@ -102,7 +102,7 @@ app.post('/add-cat-form', function(req, res){
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
     // Create the query and run it on the database
-    query1 = `INSERT INTO cat (first_name, last_name, notes) VALUES ('${data['input-first_name']}', '${data['input-last_name']}', '${data['input-notes']}')`;
+    query1 = `INSERT INTO cat (first_name, last_name, notes, room_id) VALUES ('${data['input-first-name']}', '${data['input-last-name']}', '${data['input-notes']}', '${data['input-room']}')`;
     db.pool.query(query1, function(error, rows, fields){
         // Check to see if there was an error
         if (error) {
@@ -116,11 +116,64 @@ app.post('/add-cat-form', function(req, res){
             res.redirect('/cats');
         }
     })
+})
+
+app.post('/add-cat-reservation-form', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+    // Create the query and run it on the database
+    query1 = `INSERT INTO cat_reservation (cat_id, reservation_id) VALUES ('${data['input-cat']}', '${data['input-reservation']}')`;
+    db.pool.query(query1, function(error, rows, fields){
+        // Check to see if there was an error
+        if (error) {
+        // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+        console.log(error)
+        res.sendStatus(400);
+        }
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
+        else{
+            res.redirect('/cat_reservation');
+        }
     })
+})
+
+app.post('/add-room-form', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+    // Create the query and run it on the database
+    query1 = `INSERT INTO room (clean, occupied, employee_id) VALUES ('${data['input-clean']}', '${data['input-occupied']}', '${data['input-employee']}')`;
+    db.pool.query(query1, function(error, rows, fields){
+        // Check to see if there was an error
+        if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // presents it on the screen
+        else{
+            res.redirect('/rooms');
+        }
+    })
+})
+
+app.delete('/delete-employee-ajax/', function(req,res,next){
+  let data = req.body;
+  let employeeID = parseInt(data.id);
+  let deleteEmployee = `DELETE FROM employee WHERE employee_id = ?`;
 
 
-      
+        // Run the 1st query
+        db.pool.query(deleteEmployee, [employeeID], function(error, rows, fields){
+            if (error) {
 
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+            }
+
+})});
 
 /*
     LISTENER

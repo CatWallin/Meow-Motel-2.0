@@ -25,7 +25,7 @@ module.exports = function(){
     /* Find people whose fname starts with a given string in the req */
     function getPeopleWithNameLike(req, res, mysql, context, complete) {
       //sanitize the input as well as include the % character
-       var query = "SELECT customer_id, first_name, last_name FROM customer = customer_id WHERE customer_id.first_name LIKE " + mysql.pool.escape(req.params.s + '%');
+       var query = "SELECT customer_id, first_name, last_name FROM customer WHERE customer=" + mysql.pool.escape(req.params.s + '%');
       console.log(query)
 
       mysql.pool.query(query, function(error, results, fields){
@@ -47,7 +47,6 @@ module.exports = function(){
       context.jsscripts = ["search_customer.js"];
       var mysql = req.app.get('mysql');
       getPeopleWithNameLike(req, res, mysql, context, complete);
-      getPlanets(res, mysql, context, complete);
       function complete(){
           callbackCount++;
           if(callbackCount >= 2){
@@ -55,6 +54,8 @@ module.exports = function(){
           }
       }
   });
+
+  
 
     return router;
 }();
