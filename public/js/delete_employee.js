@@ -28,7 +28,7 @@ function deleteEmployee(employeeID) {
 
 function deleteRow(employeeID){
 
-    let table = document.getElementById("employee-table");
+    let table = document.getElementById("people-table");
     for (let i = 0, row; row = table.rows[i]; i++) {
        //iterate through rows
        //rows would be accessed using the "row" variable assigned in the for loop

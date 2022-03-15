@@ -99,12 +99,11 @@ app.post('/add-reservation-form', function(req, res){
     })
     })
 
-
 app.post('/add-cat-form', function(req, res){
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
     // Create the query and run it on the database
-    query1 = `INSERT INTO cat (first_name, last_name, notes, customer_id) VALUES ('${data['input-first_name']}', '${data['input-last_name']}', '${data['input-notes']}', '${data['input-customer']}')`;
+    query1 = `INSERT INTO cat (first_name, last_name, notes) VALUES ('${data['input-first_name']}', '${data['input-last_name']}', '${data['input-notes']}')`;
     db.pool.query(query1, function(error, rows, fields){
         // Check to see if there was an error
         if (error) {
@@ -119,6 +118,9 @@ app.post('/add-cat-form', function(req, res){
         }
     })
     })
+
+
+      
 
 
 /*

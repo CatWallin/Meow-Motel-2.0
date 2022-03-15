@@ -27,8 +27,9 @@ module.exports = function(){
     router.delete('/delete-person-ajax/', function(req,res,next){
       let data = req.body;
       let catReservationID = parseInt(data.id);
-      let deleteCatReservation = "DELETE FROM cat_reservation WHERE pid = ?";
-      let deleteReservation = "DELETE FROM reservation WHERE id = ?";
+      let deleteCatReservation= `DELETE FROM cat_reservation WHERE pid = ?`;
+      let deleteReservation= `DELETE FROM reservation WHERE id = ?`;
+    
     
         // Run the 1st query
         db.pool.query(deleteCatReservation, [catReservationID], function(error, rows, fields){
@@ -39,19 +40,19 @@ module.exports = function(){
             res.sendStatus(400);
             }
     
-            else
-            {
-              // Run the second query
-              db.pool.query(deleteReservation, [catReservationID], function(error, rows, fields) {
+              else
+              {
+                // Run the second query
+                db.pool.query(deleteReservation, [catReservationID], function(error, rows, fields) {
     
-                if (error) {
-                    console.log(error);
-                    res.sendStatus(400);
-                } else {
-                    res.sendStatus(204);
-                }
-              })
-            }
+                  if (error) {
+                      console.log(error);
+                      res.sendStatus(400);
+                  } else {
+                      res.sendStatus(204);
+                  }
+                })
+              }
     })});
 
 
