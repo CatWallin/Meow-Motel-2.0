@@ -21,7 +21,6 @@ var db = require('./database/db-connector')
     ROUTES
 */
 
-
 // app.js
 
 app.use('/static', express.static('public'));
