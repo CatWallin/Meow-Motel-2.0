@@ -37,13 +37,13 @@
         <caption>Add a new reservation:</caption><br><br>
         <form id="add-reservation-form" method="POST" action="/add-reservation-form">
           <label for="checkin">Check-In Date</label>
-          <input type="date" id="input-first_name" name="input-first_name" value="Start Date" min="2022-01-01" max="2023-12-31">
+          <input type="date" id="input-checkin" name="input-checkin" value="" min="2022-01-01" max="2023-12-31">
           <label for="checkout">Check-Out Date</label>
-          <input type="date" id="input-last_name" name="input-last_name" value="End Date" min="2022-01-02" max="2023-12-31">
+          <input type="date" id="input-checkout" name="input-checkout" value="" min="2022-01-02" max="2023-12-31">
           <select name="input-customer" id="input-customer-ajax">
             <option value="">Select a Customer</option>
             {{#each customers}}
-            <option value="{{this.customer_id}}">{{this.first_name}}</option>
+            <option value="{{this.customer_id}}">{{this.first_name}} {{this.last_name}}</option>
             {{/each}}
           </select>
           <select name="input-room" id="input-room-ajax">
