@@ -101,8 +101,15 @@ app.post('/add-reservation-form', function(req, res){
 app.post('/add-cat-form', function(req, res){
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
+
+    let room = parseInt(data.room_id);
+    if (isNaN(room))
+    {
+        room = 'NULL'
+    }
+
     // Create the query and run it on the database
-    query1 = `INSERT INTO cat (first_name, last_name, notes, room_id) VALUES ('${data['input-first-name']}', '${data['input-last-name']}', '${data['input-notes']}', '${data['input-room']}')`;
+    query1 = `INSERT INTO cat (first_name, last_name, notes, room_id) VALUES ('${data['input-first-name']}', '${data['input-last-name']}', '${data['input-notes']}', ${room})`;
     db.pool.query(query1, function(error, rows, fields){
         // Check to see if there was an error
         if (error) {
