@@ -8,7 +8,7 @@ var app     = express();            // We need to instantiate an express object 
 app.use(express.json())
 var bodyParser = require('body-parser');
 app.use(express.urlencoded({extended: true}))
-PORT        = 6456;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 6459;                 // Set a port number at the top so it's easy to change in the future
 const { engine } = require('express-handlebars');
 var exphbs = require('express-handlebars');     // Import express-handlebars
 app.engine('.hbs', engine({extname: ".hbs"}));  // Create an instance of the handlebars engine to process templates
@@ -216,6 +216,7 @@ app.delete('/delete-cat-customer-ajax/', function(req,res,next){
                   })
               }
   })});
+
 
 
 /*

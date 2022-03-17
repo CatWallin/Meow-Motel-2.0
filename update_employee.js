@@ -1,19 +1,19 @@
 // Get the objects we need to modify
-let updateCustomerForm = document.getElementById('update-customer-form-ajax');
+let updateEmployeeForm = document.getElementById('update-employee-form-ajax');
 
 // Modify the objects we need
-updateCustomerForm.addEventListener("submit", function (e) {
+updateEmployeeForm.addEventListener("submit", function (e) {
    
     // Prevent the form from submitting
     e.preventDefault();
 
     // Get form fields we need to get data from
-    let inputFirstName = document.getElementById("input-first_name");
-    let inputLastName = document.getElementById("input-last_name");
+    let inputFullName = document.getElementById("mySelect");
+    let inputHomeworld = document.getElementById("input-homeworld-update");
 
     // Get the values from the form fields
-    let firstNameValue = inputFirstName.value;
-    let LastNameValue = inputLastName.value;
+    let fullNameValue = inputFullName.value;
+    let homeworldValue = inputHomeworld.value;
     
     // currently the database table for bsg_people does not allow updating values to NULL
     // so we must abort if being bassed NULL for homeworld
@@ -32,7 +32,7 @@ updateCustomerForm.addEventListener("submit", function (e) {
     
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", "/put-person-ajax", true);
+    xhttp.open("PUT", "/put-employee-ajax", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
     // Tell our AJAX request how to resolve
@@ -54,15 +54,15 @@ updateCustomerForm.addEventListener("submit", function (e) {
 })
 
 
-function updateRow(data, personID){
+function updateRow(data, employeeID){
     let parsedData = JSON.parse(data);
     
-    let table = document.getElementById("people-table");
+    let table = document.getElementById("employee-table");
 
     for (let i = 0, row; row = table.rows[i]; i++) {
        //iterate through rows
        //rows would be accessed using the "row" variable assigned in the for loop
-       if (table.rows[i].getAttribute("data-value") == personID) {
+       if (table.rows[i].getAttribute("data-value") == employeeID) {
 
             // Get the location of the row where we found the matching person ID
             let updateRowIndex = table.getElementsByTagName("tr")[i];
