@@ -3,7 +3,7 @@ module.exports = function(){
   var router = express.Router();
 
   function serveEmployees(req, res){
-      var query = 'SELECT first_name, last_name FROM employee';
+      var query = 'SELECT first_name, last_name, employee_id FROM employee';
       var mysql = req.app.get('mysql');
       var context = {};
 

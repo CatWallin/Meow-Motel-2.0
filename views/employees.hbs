@@ -18,12 +18,23 @@
     <tr>
       <th>First Name</th>
       <th>Last Name</th>
+      <th></th>
     </tr>
   </thead>
 {{#each employees}}
-  <tr>
-    <td>{{first_name}}</td>
-    <td>{{last_name}}</td>
+  <tr id="employeeDisplay{{employee_id}}">
+    <td id="firstName{{employee_id}}">{{first_name}}</td>
+    <td id="lastName{{employee_id}}">{{last_name}}</td>
+    <td><button id="editButton{{employee_id}}" onclick="editEmployeeInfo({{employee_id}},'{{first_name}}','{{last_name}}')">Edit</button></td>
+  </tr>
+  <tr hidden id="saveFormRow{{employee_id}}">
+    <form id='update-employee-form-ajax'>
+      <fieldset>
+          <td><input type="text" value="{{this.first_name}}" id="first_name_update" required="required"/></td>
+          <td><input type="text" value="{{this.last_name}}" id="last_name_update" required="required"/></td>
+          <td><input type="submit"></td>
+      </fieldset>
+    </form>
   </tr>
 {{/each}}
 </table>
@@ -38,3 +49,23 @@
 <input type="text" name="input-last_name" id="input-last_name">
 <input type="submit">
 </form>
+
+{{!-- <p>To update the employee </p>
+<form id='update-employee-form' method='POST' action='/update-employee-form'>
+
+    <fieldset>
+      {{#each data}}
+        <label for="first_name">First Name:</label>
+        <input type="text" value="{{this.first_name}}" name="first_name_update" id="first_name_update" required="required"/>
+
+        <br>
+        <label for="last_name">Last Name:</label>
+        <input type="text" value="{{this.last_name}}" name="last_name_update" id="last_name_update" required="required"/>
+
+        <br>
+        <button value="{{this.employee_id}}" name="employee_id_update" id="employee_id_update">Submit changes</button>
+      {{/each}}
+    </fieldset>
+</form> --}}
+
+<script src="./js/update_employee.js"></script>

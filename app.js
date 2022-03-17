@@ -8,7 +8,7 @@ var app     = express();            // We need to instantiate an express object 
 app.use(express.json())
 var bodyParser = require('body-parser');
 app.use(express.urlencoded({extended: true}))
-PORT        = 6456;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 6459;                 // Set a port number at the top so it's easy to change in the future
 const { engine } = require('express-handlebars');
 var exphbs = require('express-handlebars');     // Import express-handlebars
 app.engine('.hbs', engine({extname: ".hbs"}));  // Create an instance of the handlebars engine to process templates
@@ -216,6 +216,34 @@ app.delete('/delete-cat-customer-ajax/', function(req,res,next){
                   })
               }
   })});
+
+app.put('/put-employee-ajax', function(req, res, next) {
+    let data = req.body;
+
+    let firstName = parseString(data.first_name);
+    let lastName = parseString(data.last_name);
+    let employeeId = parseInt(date.employee_id);
+
+    let queryUpdateEmployee = 'UPDATE employee SET first_name = ?, last_name = ? WHERE employee_id = ?';
+    let querySelectEmployee = `'SELECT first_name, last_name, employee_id FROM employee WHERE id = ?`
+
+    // Run the 1st query
+    db.pool.query(queryUpdateEmployee, [firstName, lastName, employeeId], function(error, rows, fields){
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            db.pool.query(querySelectEmployee, [employeeId], function(error, rows, fields) {
+
+                if (error) {
+                    console.log(error);
+                    res.sendStatus(400);
+                } else {
+                    res.send(rows);
+                }
+            })
+        }
+})});
 
 
 /*
