@@ -35,10 +35,18 @@
         <br>
         <caption>Add a new room:</caption><br><br>
         <form id="add-room-form" method="POST" action="/add-room-form">
-          <input type="checkbox" name="input-clean" id="input-clean" value="clean">
-          <label for="clean"> The room is clean </label>
-          <input type="checkbox" name="input-occupied" id="input-occupied" value="occupied">
-          <label for="occupied"> The room is occupied </label>
+
+          <select name="input-clean" id="input-clean-ajax">
+            <option value="">Is the room clean?</option>
+            <option value=1>Clean</option>
+            <option value=>Not Clean</option>
+          </select>
+          <select name="input-occupied" id="input-occupied-ajax">
+            <option value="">Is the room occupied?</option>
+            <option value=1>Occupied</option>
+            <option value=>Unoccupied</option>
+          </select>
+
           <select name="input-employee" id="input-employee-ajax">
             <option value="">Select an Employee</option>
             {{#each employees}}
